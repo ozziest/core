@@ -11,9 +11,9 @@ class Session {
 
     public function __construct($user)
     {
-        $this->user = $user;
-        $this->id = $this->id();
-        $this->name = $this->name();
+        $this->user  = $user;
+        $this->id    = $this->id();
+        $this->name  = $this->name();
         $this->email = $this->email();
     }
         
