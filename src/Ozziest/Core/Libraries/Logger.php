@@ -8,9 +8,9 @@ class Logger {
     
     private $logger;
     
-    public function __construct()
+    public function __construct(MonoLogger $logger)
     {
-        $this->logger = new MonoLogger('sorucevap');
+        $this->logger = $logger;
         $file = (new DateTime())->format('Y-m-d').'.log';
         $this->logger->pushHandler(new StreamHandler(ROOT.'resource/logs/'.$file, MonoLogger::WARNING));
     }

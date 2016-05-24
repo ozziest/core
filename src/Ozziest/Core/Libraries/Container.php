@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Database\Capsule\Manager as Capsule;
+use Monolog\Logger as MonoLogger;
 use Ozziest\Windrider\ValidationException;
 use Ozziest\Windrider\Windrider;
 use Ozziest\Core\Exceptions\UserException;
@@ -66,7 +67,7 @@ class Container {
     
     private function initLogger()
     {
-        $this->logger = new Logger();
+        $this->logger = new Logger(new MonoLogger('sorucevap'));
     }
     
     private function showError($exception, $status = 500, $message = null)
