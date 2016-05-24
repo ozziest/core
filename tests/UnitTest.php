@@ -88,6 +88,11 @@ class FacadesTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(count($data['data']), 1);
     }
     
+    public function testRouter()
+    {
+        Router::get('users', 'Users', 'getAll');
+    }
+    
     public function paginateProvider()
     {
         return array(
