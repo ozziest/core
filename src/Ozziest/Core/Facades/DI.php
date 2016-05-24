@@ -16,7 +16,7 @@ class DI {
         if (isset($this->list[$name])) 
         {
             // Bu değişlen bağımlılık tanımlaması bir fonksiyon mu?
-            if (is_callable($this->list[$name]))
+            if (is_string($this->list[$name]) === false && is_callable($this->list[$name]))
             {
                 return $this->list[$name]();                
             }

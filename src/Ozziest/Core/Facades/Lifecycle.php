@@ -13,7 +13,7 @@ class Lifecycle {
     {
         if (isset($this->data[$name])) 
         {
-            return $this->data[$name];
+            return (object) $this->data[$name];
         }
         return (object) [
             'id' => -1,
