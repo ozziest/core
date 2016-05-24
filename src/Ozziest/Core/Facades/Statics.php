@@ -1,6 +1,6 @@
 <?php namespace Ozziest\Core\Facades;
 
-use App\Core\Exceptions\UserException;
+use Ozziest\Core\Exceptions\UserException;
 
 class Statics {
 

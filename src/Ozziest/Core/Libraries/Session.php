@@ -1,6 +1,6 @@
 <?php namespace Ozziest\Core\Libraries;
 
-use App\Core\Exceptions\UserException;
+use Ozziest\Core\Exceptions\UserException;
 
 class Session {
 

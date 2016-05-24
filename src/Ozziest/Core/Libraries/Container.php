@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Ozziest\Windrider\ValidationException;
 use Ozziest\Windrider\Windrider;
-use App\Core\Exceptions\UserException;
+use Ozziest\Core\Exceptions\UserException;
 use Router, Exception, ReflectionMethod, Lifecycle, DI;
 
 class Container {

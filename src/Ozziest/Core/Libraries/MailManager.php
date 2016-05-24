@@ -2,7 +2,7 @@
 
 use Nette\Mail\SmtpMailer;
 use Nette\Mail\Message;
-use App\Core\Exceptions\UserException;
+use Ozziest\Core\Exceptions\UserException;
 use Exception;
 
 class MailManager {

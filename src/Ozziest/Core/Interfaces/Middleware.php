@@ -1,7 +1,7 @@
 <?php namespace Ozziest\Core\Interfaces;
 
 use Symfony\Component\HttpFoundation\Request;
-use App\Core\Libraries\DB;
+use Ozziest\Core\Libraries\DB;
 
 interface Middleware {
     

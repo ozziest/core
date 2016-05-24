@@ -1,8 +1,8 @@
 <?php namespace Ozziest\Core\Types; 
 
-use App\Core\Libraries\Session;
-use App\Core\Libraries\DB;
-use App\Core\Libraries\Logger;
+use Ozziest\Core\Libraries\Session;
+use Ozziest\Core\Libraries\DB;
+use Ozziest\Core\Libraries\Logger;
 use Ozziest\Windrider\Windrider;
 
 class Controller {
