@@ -22,30 +22,15 @@ class MailManager {
                    ->setHTMLBody($content->toString());
         self::send();
     }
-
-    public static function invitation($email, $inviter, $code)
-    {
-        self::init();
-        
-        $content = self::loadContent('invitation');
-        $content->replace("{INVITER}", $inviter)
-                ->replace("{CODE}", $code)
-                ->replace("{DOMAIN}", getenv('domain'));
-        
-        self::$mail->addTo($email)
-                   ->setSubject('Yazarlık Davetiyesi')
-                   ->setHTMLBody($content->toString());
-        self::send();
-    }
     
-    private function send()
+    private static function send()
     {
-            self::$mailer->send(self::$mail);
         try {
+            self::$mailer->send(self::$mail);
         }
         catch (Exception $exception)
         {
-            // throw new UserException("E-posta gönderiminde hata gerçekleşti.");
+            throw new UserException("E-posta gönderiminde hata gerçekleşti.");
         }
     }
     
