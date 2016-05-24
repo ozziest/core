@@ -1,0 +1,32 @@
+{
+    "name": "ozziest/core",
+    "description": "PHP simple framework core",
+    "authors": [
+        {
+            "name": "Özgür Adem Işıklı",
+            "email": "i.ozguradem@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "illuminate/database": "5.*",
+        "symfony/routing": "3.*",
+        "symfony/http-foundation": "3.*",
+        "philo/laravel-blade": "3.*",
+        "ahir/facades": "1.*",
+        "filp/whoops": "^2.1",
+        "ozziest/windrider": "2.*",
+        "nette/mail": "^2.3",
+        "monolog/monolog": "^1.18",
+        "php-amqplib/php-amqplib": "2.5.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "App\\Core": "src"
+        },
+        "classmap": [
+            "src/classes",
+            "src/facades"
+        ]
+    }    
+}
