@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-0": {
-            "App\\Core": "src"
+            "Ozziest\\Core": "src"
         },
         "classmap": [
             "src/classes",
