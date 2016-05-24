@@ -11,7 +11,7 @@ class Replacer {
     
     public function replace($old, $new)
     {
-        $this->content = str_replace($old, $new, $this->content);
+        $this->content = str_replace('{'.$old.'}', $new, $this->content);
         return $this;
     }
     
