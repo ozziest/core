@@ -11,7 +11,7 @@ class Lifecycle extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\Lifecycle';
+        return 'Ozziest\Core\Facades\Lifecycle';
     }
 
 }

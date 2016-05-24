@@ -11,7 +11,7 @@ class Notification extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\Notification';
+        return 'Ozziest\Core\Facades\Notification';
     }
 
 }

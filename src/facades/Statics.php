@@ -11,7 +11,7 @@ class Statics extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\Statics';
+        return 'Ozziest\Core\Facades\Statics';
     }
 
 }

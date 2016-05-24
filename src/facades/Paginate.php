@@ -11,7 +11,7 @@ class Paginate extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\Paginate';
+        return 'Ozziest\Core\Facades\Paginate';
     }
 
 }

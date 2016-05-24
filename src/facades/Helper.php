@@ -11,7 +11,7 @@ class Helper extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\Helper';
+        return 'Ozziest\Core\Facades\Helper';
     }
 
 }

@@ -11,7 +11,7 @@ class DI extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\DI';
+        return 'Ozziest\Core\Facades\DI';
     }
 
 }

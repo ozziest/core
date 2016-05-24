@@ -11,7 +11,7 @@ class Router extends Facade {
      */
     public static function getFacadeAccessor() 
     { 
-        return 'App\Core\Facades\Router';
+        return 'Ozziest\Core\Facades\Router';
     }
 
 }
