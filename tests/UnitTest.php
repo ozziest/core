@@ -51,7 +51,7 @@ class FacadesTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals($data->id, 666);
     }
     
-     /**
+    /**
      * @dataProvider paginateProvider
      */
     public function testPaginate($total, $current)
@@ -88,10 +88,53 @@ class FacadesTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(count($data['data']), 1);
     }
     
-    public function testRouter()
+    /**
+     * @dataProvider routerProvider
+     */
+    public function testRouter($method, $url, $controller, $action)
     {
-        Router::get('users', 'Users', 'getAll');
+        Router::setNamespace('App\Controllers');
+        Router::any($url, $controller, $action, strtoupper($method));
     }
+    
+    public function testRouteCollection()
+    {
+        $collection = Router::getCollection();
+        $this->assertInstanceOf('Symfony\Component\Routing\RouteCollection', $collection);
+        $this->assertEquals($collection->count(), 2);
+        foreach ($collection->all() as $key => $route)
+        {
+            $this->assertInstanceOf('Symfony\Component\Routing\Route', $route);
+        }
+    }
+    
+    public function testStatics()
+    {
+        Statics::set('Period', [1, 2, 5, 10, 15, 30, 45, 60, 90, 120]);
+        Statics::check('Period', 1);
+        Statics::check('Period', 2);
+        Statics::check('Period', 5);
+        Statics::check('Period', 10);
+        Statics::check('Period', 120);
+    }
+
+    /**
+     * @expectedException Ozziest\Core\Exceptions\UserException
+     * @expectedExceptionMessage The Period is invalid!
+     */
+    public function testStaticsException()
+    {
+        Statics::check('Period', 666);
+    }
+
+    public function routerProvider()
+    {
+        return array(
+            // url, controller, action
+            array('get', 'users', 'Users', 'getAll'),
+            array('post', 'users/create', 'Users', 'create'),
+        );
+    }      
     
     public function paginateProvider()
     {

@@ -4,13 +4,12 @@ use Ozziest\Core\Exceptions\UserException;
 
 class Statics {
 
-    private $list = [
+    private $list = [];
     
-        "Period" => [1, 2, 5, 10, 15, 30, 45, 60, 90, 120],
-        "Action Type" => ['follow', 'unfollow', 'follow.unfollow', 'like', 'retweet'],
-        "Account Type" => ["twitter", "foursquare"]
-
-    ];
+    public function set($key, $values)
+    {
+        $this->list[$key] = $values;
+    }
     
     public function check($key, $value)
     {
