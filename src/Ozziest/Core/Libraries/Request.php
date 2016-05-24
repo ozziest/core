@@ -11,7 +11,6 @@ class Request implements IRequest {
     public function __construct(SymfonyRequest $request)
     {
         $this->symfony = $request;
-        var_dump($this->symfony->parameters);exit;
         $this->params = $request->request;
     }
     
