@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Illuminate\Database\Capsule\Manager as Capsule;
 use Ozziest\Windrider\ValidationException;
 use Ozziest\Windrider\Windrider;
 use Ozziest\Core\Exceptions\UserException;
@@ -22,7 +23,6 @@ class Container {
 
     public function bootstrap()
     {
-        
         try 
         {
             $this->initLogger();
@@ -125,7 +125,7 @@ class Container {
     
     private function initDatabase()
     {
-        $this->db = new DB();
+        $this->db = new DB(new Capsule());
         $this->db->connect();
     }
     

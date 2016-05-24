@@ -2,6 +2,12 @@
 
 class FacadesTest extends PHPUnit_Framework_TestCase {
 
+    public function tearDown()
+    {
+        parent::tearDown();
+        Mockery::close();
+    }
+
     public function testDI()
     {
         DI::register('name', function () {

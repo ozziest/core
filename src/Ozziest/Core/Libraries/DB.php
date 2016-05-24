@@ -1,15 +1,19 @@
 <?php namespace Ozziest\Core\Libraries;
 
-use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Capsule\Manager;
 use IDB;
 
 class DB implements IDB {
 
     private $capsule;
+    
+    public function __construct(Manager $capsule)
+    {
+        $this->capsule = $capsule;
+    }
 
     public function connect()
     {
-        $this->capsule = new Capsule; 
         $this->capsule->addConnection(array(
             'driver'    => 'mysql',
             'host'      => getenv('hostname'),
@@ -21,7 +25,6 @@ class DB implements IDB {
             'prefix'    => ''
         ));
         $this->capsule->bootEloquent();
-             
     }
 
     public function transaction()
