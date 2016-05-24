@@ -28,7 +28,7 @@ class Logger {
     public function exception($exception)
     {
         $this->logger->addError(
-            '['.$exception->getCode.'] '.$exception->getMessage()."\n".
+            '['.$exception->getCode().'] '.$exception->getMessage()."\n".
             $exception->getFile().": ".$exception->getLine()."\n".
             $exception->getTraceAsString()
         );
