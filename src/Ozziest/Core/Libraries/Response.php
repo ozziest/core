@@ -1,7 +1,7 @@
 <?php namespace Ozziest\Core\Libraries;
 
 use Philo\Blade\Blade;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use IResponse;
 
@@ -10,10 +10,11 @@ class Response implements IResponse {
     private $engine;
     private $request;
     
-    public function __construct(Request $request)
+    public function __construct(SymfonyRequest $request, SymfonyResponse $response, Blade $blade)
     {
-        $this->request = $request;
-        $this->engine = new Blade(ROOT.'resource/views', ROOT.'resource/cache');
+        $this->request  = $request;
+        $this->response = $response;
+        $this->engine   = $blade;
     }
     
     public function view($name, $arguments = [], $status = 200)
@@ -35,15 +36,13 @@ class Response implements IResponse {
     
     private function putResponse($content, $status, $type)
     {
-        $response = new SymfonyResponse(
-            $content, 
-            $status,
-            array('content-type' => $type)
-        );
-        $response->prepare($this->request);
-        $response->setPublic();
-        $response->setMaxAge(600);
-        $response->send();
+        $this->response->setContent($content);
+        $this->response->setStatusCode($status);
+        $this->response->headers->set('Content-Type', $type);
+        $this->response->prepare($this->request);
+        $this->response->setPublic();
+        $this->response->setMaxAge(600);
+        $this->response->send();
     }
 
     private function get($name, $arguments = [])

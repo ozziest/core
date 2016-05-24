@@ -1,6 +1,7 @@
 <?php namespace Ozziest\Core\Libraries;
 
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\HttpFoundation\AcceptHeader;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Monolog\Logger as MonoLogger;
+use Philo\Blade\Blade;
 use Ozziest\Windrider\ValidationException;
 use Ozziest\Windrider\Windrider;
 use Ozziest\Core\Exceptions\UserException;
@@ -132,7 +134,11 @@ class Container {
     
     private function initResponse()
     {
-        $this->response = new Response($this->request);
+        $this->response = new Response(
+            $this->request, 
+            new SymfonyResponse(),
+            new Blade(ROOT.'resource/views', ROOT.'resource/cache')
+        );
     }
     
     private function initRequest()
