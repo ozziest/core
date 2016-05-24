@@ -7,26 +7,42 @@ use Exception;
 
 class MailManager {
     
-    private static $mailer;
-    private static $mail;
+    private $mailer;
+    private $mail;
     
-    public static function welcome($email, $name)
+    public function __construct(SmtpMailer $mailer, Message $message)
     {
-        self::init();
-        
-        $content = self::loadContent('welcome');
-        $content->replace("{NAME}", $name);
-
-        self::$mail->addTo($email)
-                   ->setSubject('Welcome to sociaman!')
-                   ->setHTMLBody($content->toString());
-        self::send();
+        $this->mailer = $mailer;
+        $this->mail = $message;
+        $this->mail->setFrom(getenv("smtp_title"));
     }
     
-    private static function send()
+    public static function getOptions()
+    {
+        return array(
+            'host'     => 'smtp.gmail.com',
+            'port'     => 587,
+            'username' => getenv("smtp_mail"),
+            'password' => getenv("smtp_password"),
+            'secure'   => 'tls'
+        );
+    }
+    
+    public function welcome($email, $name, $subject = "Welcome")
+    {
+        $content = $this->loadContent('welcome');
+        $content->replace("{NAME}", $name);
+
+        $this->mail->addTo($email)
+                   ->setSubject($subject)
+                   ->setHTMLBody($content->toString());
+        $this->send();
+    }
+    
+    private function send()
     {
         try {
-            self::$mailer->send(self::$mail);
+            $this->mailer->send($this->mail);
         }
         catch (Exception $exception)
         {
@@ -34,22 +50,12 @@ class MailManager {
         }
     }
     
-    private static function init()
+    private function loadContent($fileName)
     {
-        self::$mailer = new SmtpMailer(array(
-            'host'     => 'smtp.gmail.com',
-            'port'     => 587,
-            'username' => getenv("smtp_mail"),
-            'password' => getenv("smtp_password"),
-            'secure'   => 'tls',
-        ));
-
-        self::$mail = new Message;
-        self::$mail->setFrom(getenv("smtp_title"));
-    }
-    
-    private static function loadContent($fileName)
-    {
+        if (getenv('APP_ENV') === 'testing')
+        {
+            return new Replacer("testing");
+        }
         return new Replacer(file_get_contents(ROOT.'resource/emails/'.$fileName.'.html'));
     }
     
