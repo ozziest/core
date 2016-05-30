@@ -75,7 +75,10 @@ class Container {
     private function showError($exception, $status = 500, $message = null)
     {
 
-        $this->db->rollBack();
+        if ($this->db !== null)
+        {
+            $this->db->rollBack();
+        }
 
         if ($status === 0)
         {
