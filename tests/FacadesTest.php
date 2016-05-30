@@ -6,6 +6,7 @@ class FacadesTest extends PHPUnit_Framework_TestCase {
     {
         parent::tearDown();
         Mockery::close();
+        putenv("app_key=my_secret_key");
     }
 
     public function testDI()
@@ -42,6 +43,9 @@ class FacadesTest extends PHPUnit_Framework_TestCase {
         $_SERVER["HTTP_USER_AGENT"] = 'chrome';
         $this->assertEquals(Helper::agentClear(), 'chrome');
         $this->assertEquals(Helper::agent(), md5('chrome'));
+        
+        $this->assertTrue(Helper::salt('foo1@bar.com', '123456') !== Helper::salt('foo2@bar.com', '123456'));
+
     }
     
     public function testLifeCycle()
