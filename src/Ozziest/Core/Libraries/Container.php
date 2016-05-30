@@ -206,6 +206,12 @@ class Container {
     private function initConfigurations()
     {
         $configurations = json_decode(file_get_contents(ROOT.'.env.config.json'));
+        
+        if ($configurations === NULL)
+        {
+            throw new Exception("Configuration file is not correct!");
+        }
+        
         foreach ($configurations as $key => $value) 
         {
             putenv("$key=$value");
