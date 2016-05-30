@@ -112,7 +112,7 @@ class Container {
     private function failOnProduction($exception)
     {
         if (getenv('environment') !== "production") {
-            // throw $exception;
+            throw $exception;
         }
     }
     
