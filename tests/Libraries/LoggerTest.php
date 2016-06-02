@@ -2,7 +2,7 @@
 
 use PHPUnit_Framework_TestCase;
 use Mockery, Exception;
-use Ozziest\Core\Libraries\Logger;
+use Ozziest\Core\System\Logger;
 
 class LoggerTest extends PHPUnit_Framework_TestCase {
 

@@ -2,7 +2,7 @@
 
 use PHPUnit_Framework_TestCase;
 use Mockery;
-use Ozziest\Core\Libraries\DB;
+use Ozziest\Core\Data\DB;
 
 class DBTest extends PHPUnit_Framework_TestCase {
 

@@ -28,7 +28,6 @@
             "Ozziest\\Core": "src"
         },
         "classmap": [
-            "src/classes",
             "src/facades"
         ]
     }    

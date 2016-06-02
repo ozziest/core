@@ -2,7 +2,7 @@
 
 use PHPUnit_Framework_TestCase;
 use Mockery, Exception;
-use Ozziest\Core\Libraries\Response;
+use Ozziest\Core\HTTP\Response;
 
 class ResponseTest extends PHPUnit_Framework_TestCase {
 

@@ -2,7 +2,7 @@
 
 use PHPUnit_Framework_TestCase;
 use Mockery, Exception;
-use Ozziest\Core\Libraries\Session;
+use Ozziest\Core\Data\Session;
 
 class SessionTest extends PHPUnit_Framework_TestCase {
 
