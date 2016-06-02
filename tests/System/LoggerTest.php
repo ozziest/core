@@ -1,4 +1,4 @@
-<?php namespace Libraries;
+<?php namespace Ozziest\Core\Tests\System;
 
 use PHPUnit_Framework_TestCase;
 use Mockery, Exception;
