@@ -1,6 +1,7 @@
 <?php namespace Ozziest\Core\HTTP;
 
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Exception;
 
 class Request implements IRequest {
 
