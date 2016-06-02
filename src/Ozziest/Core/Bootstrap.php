@@ -14,13 +14,14 @@ use Philo\Blade\Blade;
 use Ozziest\Windrider\ValidationException;
 use Ozziest\Windrider\Windrider;
 use Ozziest\Core\Exceptions\UserException;
-use Exception, Lifecycle, Router;
+use Exception, Lifecycle, Router, DI;
 
 use Ozziest\Core\HTTP\Response;
 use Ozziest\Core\HTTP\Request;
 use Ozziest\Core\Data\DB;
 use Ozziest\Core\Data\Session;
 use Ozziest\Core\System\Logger;
+use Ozziest\Core\System\DIManager;
 
 class Bootstrap {
 
@@ -76,7 +77,7 @@ class Bootstrap {
     
     private function initDependencies()
     {
-        
+        DI::setManager(new DIManager());
     }
     
     private function initLogger()
