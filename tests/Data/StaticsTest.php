@@ -1,31 +1,17 @@
-<?php 
+<?php namespace Ozziest\Core\Tests\Data;
 
-use Ozziest\Core\HTTP\Router;
-use Ozziest\Core\Data\Lifecycle;
+use PHPUnit_Framework_TestCase;
+use Mockery;
 use Ozziest\Core\Data\Statics;
 
-class FacadesTest extends PHPUnit_Framework_TestCase {
+class StaticsTest extends PHPUnit_Framework_TestCase {
 
     public function tearDown()
     {
         parent::tearDown();
         Mockery::close();
-        putenv("app_key=my_secret_key");
     }
 
-    public function testLifeCycle()
-    {
-        $data = Lifecycle::get('my_data');
-        $this->assertEquals($data->id, -1);
-        
-        Lifecycle::set('my_data', [
-            'id' => 666
-        ]);
-
-        $data = Lifecycle::get('my_data');
-        $this->assertEquals($data->id, 666);
-    }
-    
     public function testStatics()
     {
         Statics::set('Period', [1, 2, 5, 10, 15, 30, 45, 60, 90, 120]);
