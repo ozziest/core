@@ -1,6 +1,8 @@
 <?php 
 
 use Ozziest\Core\HTTP\Router;
+use Ozziest\Core\Data\Lifecycle;
+use Ozziest\Core\Data\Statics;
 
 class FacadesTest extends PHPUnit_Framework_TestCase {
 

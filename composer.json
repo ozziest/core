@@ -13,7 +13,6 @@
         "symfony/routing": "3.*",
         "symfony/http-foundation": "3.*",
         "philo/laravel-blade": "3.*",
-        "ahir/facades": "1.*",
         "filp/whoops": "^2.1",
         "ozziest/windrider": "2.*",
         "nette/mail": "^2.3",
@@ -26,9 +25,6 @@
     "autoload": {
         "psr-0": {
             "Ozziest\\Core": "src"
-        },
-        "classmap": [
-            "src/facades"
-        ]
+        }
     }    
 }

@@ -37,6 +37,8 @@ class Bootstrap {
         {
             class_alias('\Ozziest\Core\HTTP\Router', 'Router');
             class_alias('\Ozziest\Core\System\DI', 'DI');
+            class_alias('\Ozziest\Core\Data\Lifecycle', 'Lifecycle');
+            class_alias('\Ozziest\Core\Data\Statics', 'Statics');
             $this->initLogger();
             $this->initSetups();
             $this->initConfigurations();
