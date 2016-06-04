@@ -30,7 +30,12 @@ class Bootstrap {
     private $db;
     private $matcher;
     private $logger;
-
+    
+    /**
+     * Bootstrapping framework
+     * 
+     * @return null
+     */
     public function bootstrap()
     {
         try 
@@ -78,16 +83,34 @@ class Bootstrap {
         
     }
     
+    /**
+     * DI Manager is being set!
+     * 
+     * @return null
+     */
     private function initDependencies()
     {
         DI::setManager(new DIManager());
     }
     
+    /**
+     * Initializing Logger class.
+     * 
+     * @return null
+     */
     private function initLogger()
     {
         $this->logger = new Logger(new MonoLogger('sorucevap'));
     }
     
+    /**
+     * Showing error
+     * 
+     * @param  Exception $exception
+     * @param  integer   $status
+     * @param  string    $message
+     * @return null
+     */
     private function showError($exception, $status = 500, $message = null)
     {
 
@@ -124,7 +147,14 @@ class Bootstrap {
         }
 
     }
-
+    
+    /**
+     * This method checks the environment is production or not. 
+     * If the environment is not production, throwing the exception
+     * 
+     * @param  Exception $exception
+     * @return null
+     */
     private function failOnProduction($exception)
     {
         if (getenv('environment') !== "production") {
@@ -132,12 +162,22 @@ class Bootstrap {
         }
     }
     
+    /**
+     * Initializing application layers
+     * 
+     * @return null
+     */
     private function initApplicationLayers()
     {
         require_once ROOT.'App/bootstrap.php';
         require_once ROOT.'App/routes.php';
     }
     
+    /**
+     * Initializing error handler 
+     * 
+     * @return null
+     */
     private function initErrorHandler()
     {
         $whoops = new \Whoops\Run();
@@ -145,12 +185,22 @@ class Bootstrap {
         $whoops->register();
     }
     
+    /**
+     * Initializing the database 
+     * 
+     * @return null
+     */
     private function initDatabase()
     {
         $this->db = new DB(new Capsule());
         $this->db->connect();
     }
     
+    /**
+     * Initializing the response object 
+     * 
+     * @return null
+     */
     private function initResponse()
     {
         $this->response = new Response(
@@ -160,6 +210,11 @@ class Bootstrap {
         );
     }
     
+    /**
+     * Initializing the request object
+     * 
+     * @return null
+     */
     private function initRequest()
     {
         $this->request = SymfonyRequest::createFromGlobals();
@@ -168,12 +223,23 @@ class Bootstrap {
         $this->matcher = new UrlMatcher(Router::getCollection(), $context);        
     }
     
+    /**
+     * Initializing common setups
+     * 
+     * @return null
+     */
     private function initSetups()
     {
         // Zaman dilimi ayarlanır
         // date_default_timezone_set('Europe/Istanbul');
     }
 
+    /**
+     * Calling the application controller with request object and routing 
+     * arguments.
+     * 
+     * @return null
+     */ 
     private function callAppcalition()
     {
         // Controller çalıştırılır
@@ -202,7 +268,13 @@ class Bootstrap {
         $content = call_user_func_array([$controller, $parameters['method']], $arguments);
         $this->db->commit();
     }
-
+    
+    /**
+     * This method calls the middleware layers
+     * 
+     * @param  string   $name
+     * @return null
+     */
     private function callMiddleware($name)
     {
         $name = "\App\Middlewares\\".$name;
@@ -214,7 +286,11 @@ class Bootstrap {
         $instance->exec($this->request, $this->db);
     }
 
-    
+    /**
+     * This method loads the configuration file
+     * 
+     * @return null
+     */
     private function initConfigurations()
     {
         $configurations = json_decode(file_get_contents(ROOT.'.env.config.json'));

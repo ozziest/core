@@ -8,7 +8,13 @@ class Session implements ISession {
     private $id;
     private $name;
     private $email;
-
+    
+    /**
+     * Class constructor
+     * 
+     * @param StdClass  $user
+     * @retur null
+     */
     public function __construct($user)
     {
         $this->user  = $user;
@@ -16,13 +22,23 @@ class Session implements ISession {
         $this->name  = $this->name();
         $this->email = $this->email();
     }
-        
+    
+    /**
+     * This method returns the id of the logged user
+     * 
+     * @return integer
+     */
     public function id()
     {
         $this->isMustBeSet();
         return $this->user->id;
     }
     
+    /**
+     * This method returns full name of the logged user
+     * 
+     * @return string
+     */
     public function name()
     {
         $this->isMustBeSet();
@@ -33,18 +49,33 @@ class Session implements ISession {
         return $name;
     }
     
+    /**
+     * This method returns email of the logged user
+     * 
+     * @return string
+     */
     public function email()
     {
         $this->isMustBeSet();
         return $this->user->email;
     }
     
+    /**
+     * This method returns user object
+     * 
+     * @return StdClass
+     */
     public function get()
     {
         $this->isMustBeSet();
         return $this->user;
     }
     
+    /**
+     * This method checks the user object has set!
+     * 
+     * @return string
+     */
     private function isMustBeSet()
     {
         if ($this->user === false)

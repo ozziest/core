@@ -2,6 +2,13 @@
 
 class StringHelper {
     
+    /**
+     * This method gets a random string with lenght which was sent as 
+     * an argument
+     * 
+     * @param  integer  $length
+     * @return string
+     */
     public static function random($length = 10) 
     {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

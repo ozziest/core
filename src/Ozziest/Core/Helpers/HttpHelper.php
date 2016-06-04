@@ -1,7 +1,12 @@
 <?php namespace Ozziest\Core\Helpers;
 
 class HttpHelper {
-
+    
+    /**
+     * This method returns the ip address
+     * 
+     * @return string
+     */
     public static function ip() 
     {
         
@@ -34,6 +39,11 @@ class HttpHelper {
 
     }    
     
+    /**
+     * This method returns user agent information
+     * 
+     * @return string
+     */
     public static function agent()
     {
         if (isset($_SERVER["HTTP_USER_AGENT"]))
@@ -42,6 +52,11 @@ class HttpHelper {
         }
     }
 
+    /**
+     * This method returns user agent with mixed
+     * 
+     * @return string
+     */
     public static function agentMd5()
     {
         return md5(self::agent());
