@@ -14,6 +14,7 @@ use Philo\Blade\Blade;
 use Ozziest\Windrider\ValidationException;
 use Ozziest\Windrider\Windrider;
 use Ozziest\Core\Exceptions\UserException;
+use Ozziest\Core\Exceptions\ApiException;
 use Exception, Lifecycle, Router, DI;
 
 use Ozziest\Core\HTTP\Response;
@@ -63,6 +64,10 @@ class Bootstrap {
         {
             $this->db->rollBack();
             $this->response->json(['message' => Windrider::getErrors()], 406);
+        }
+        catch (ApiException $exception)
+        {
+            $this->showApiException($exception, $exception->getCode());
         }
         catch (UserException $exception)
         {
@@ -147,6 +152,49 @@ class Bootstrap {
         }
 
     }
+
+    /**
+     * Showing error
+     * 
+     * @param  Exception $exception
+     * @param  integer   $status
+     * @param  string    $message
+     * @return null
+     */
+     private function showApiException($exception, $status = 500, $message = null)
+     {
+ 
+         if ($this->db !== null)
+         {
+             $this->db->rollBack();
+         }
+ 
+         if ($status === 0)
+         {
+             $status = 400;
+         }
+              
+         if ($message === null)
+         {
+             $message = $exception->getMessage();
+         }
+         
+         if ($this->request !== null) 
+         {
+             $accept = AcceptHeader::fromString($this->request->headers->get('Accept'));
+             if ($accept->has('application/json')) 
+             {
+                 return $this->response->json(['message' => $message], $status);
+             }
+         }
+         
+         $this->logger->exception($exception);
+         
+         if ($this->response !== null) {
+             $this->response->view($status, ['exception' => $exception], $status);
+         }
+ 
+     }    
     
     /**
      * This method checks the environment is production or not. 
