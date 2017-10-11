@@ -14,7 +14,7 @@
         "symfony/http-foundation": "3.*",
         "philo/laravel-blade": "3.*",
         "filp/whoops": "^2.1",
-        "ozziest/windrider": "2.*",
+        "ozziest/windrider": "3.*",
         "nette/mail": "^2.3",
         "monolog/monolog": "^1.18"
     },
