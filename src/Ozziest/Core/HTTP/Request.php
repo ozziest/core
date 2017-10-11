@@ -17,7 +17,7 @@ class Request implements IRequest {
     public function __construct(SymfonyRequest $request)
     {
         $this->symfony = $request;
-        $this->params = $request->request;
+        $this->params = json_decode($request->getContent());
     }
     
     /**
@@ -43,7 +43,12 @@ class Request implements IRequest {
      */
     public function all()
     {
-        return $this->params->all();
+        return $this->params;
+    }
+
+    public function getSymfony()
+    {
+        return $this->symfony;
     }
     
     /**
@@ -56,7 +61,7 @@ class Request implements IRequest {
     public function get($name, $default = null)
     {
         try {
-            $default = $this->params->get($name);
+            $default = $this->params->{$name};
         }
         catch (Exception $exception) {
             
