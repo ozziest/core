@@ -22,7 +22,7 @@ class TokenHelper {
      */
     public static function salt($email, $password)
     {
-        $key = getenv('app_key');
+        $key = '66B1132A0173910B01EE3A15EF4E69583BBF2F7F1E4462C99EFBE1B9AB5BF808';
         return md5(md5($email).md5($password.sha1($key)).sha1($key));
     }
     
